@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="examvoucher">Click me to show Exam Voucher 1</div>
+<div class="examvoucher1" style="display:none;">This is Exam Voucher 1</div>
+
+<div class="amountvoucher">Click me to show Amount Voucher 1</div>
+<div class="amountvoucher1" style="display:none;">This is Amount Voucher 1</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    // Get the elements for examvoucher and examvoucher1
+    var examVoucher = document.querySelector('.examvoucher');
+    var examVoucher1 = document.querySelector('.examvoucher1');
+    
+    // Add click event for examvoucher
+    examVoucher.addEventListener('click', function() {
+        if (examVoucher1.style.display === "none") {
+            examVoucher1.style.display = "block"; // Show div
+        } else {
+            examVoucher1.style.display = "none";  // Hide div
+        }
+    });
+
+    // Get the elements for amountvoucher and amountvoucher1
+    var amountVoucher = document.querySelector('.amountvoucher');
+    var amountVoucher1 = document.querySelector('.amountvoucher1');
+
+    // Add click event for amountvoucher
+    amountVoucher.addEventListener('click', function() {
+        if (amountVoucher1.style.display === "none") {
+            amountVoucher1.style.display = "block"; // Show div
+        } else {
+            amountVoucher1.style.display = "none";  // Hide div
+        }
+    });
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,1012 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="Center.MasterPage" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Certaining Dashboard Central Panel - Exam Management Portal" />
+    <link rel="icon" href="images/favicon.ico" type="image/ico" />
+    <title>Dashboard Central Panel</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+      <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <!-- CSS: Bootstrap -->
+    <%--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous" />--%>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+
+    <!-- CSS: Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1"
+          crossorigin="anonymous" />
+      <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
+
+    <!-- CSS: jQuery Confirm -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css" />
+
+    <!-- CSS: Bootstrap Multiselect -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/1.1.2/css/bootstrap-multiselect.min.css"
+          rel="stylesheet" type="text/css" />
+
+    <!-- CSS: Timepicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css" />
+
+    <!-- CSS: jQuery UI -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+
+    <!-- CSS: Custom Theme -->
+    <link rel="stylesheet" href="/asset/css/1234.css" />
+
+    <style>
+
+            .rotate-toggle {
+        transition: transform 0.5s ease-in-out; /* Smooth transition */
+    transform: rotate(0deg); /* Initial state */
+}
+
+    .rotate180 {
+        transform: rotate(180deg) !important; /* The final rotated state */
+
+}
+    </style>
+</head>
+
+<body class="nav-md">
+    <form id="form1" runat="server">
+
+        <!-- ========== Message Dialog (hidden) ========== -->
+        <div id="dvMessage" runat="server" style="display: none;">
+            <div id="dvSuccess" runat="server" class="check_mark">
+                <div class="sa-icon sa-success animate">
+                    <span class="sa-line sa-tip animateSuccessTip"></span>
+                    <span class="sa-line sa-long animateSuccessLong"></span>
+                    <div class="sa-placeholder"></div>
+                    <div class="sa-fix"></div>
+                </div>
+            </div>
+            <div id="dvError" runat="server" class="check_mark1">
+                <div class="sa-icon1 sa-success1 animate1">
+                    <span class="sa-line1 sa-tip1 animateSuccessTip1"></span>
+                    <span class="sa-line1 sa-long1 animateSuccessLong1"></span>
+                    <div class="sa-placeholder1"></div>
+                    <div class="sa-fix1"></div>
+                </div>
+            </div>
+
+            <div id="dvSucessMessage" runat="server">
+                <div class="text-center-block">
+                    <div id="dvMessageSucess" runat="server"></div>
+                </div>
+                <div class="text-center-block" style="color: #76df3e;">Thank You</div>
+            </div>
+
+            <div id="dvErrorMessage" runat="server">
+                <div class="text-center-block">
+                    <span style="color: red;">Sorry</span>,
+                    <div id="dvMessageError" runat="server"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== Main Container ========== -->
+        <div class="container body">
+            <div class="main_container">
+
+                <!-- ===== Sidebar Navigation ===== -->
+                <div class="col-md-3 left_col">
+                    <div class="scroll-view">
+
+                        <!-- Logo -->
+                        <div class="navbar nav_title">
+                            <div class="crt-logo-wrapper">
+                                <a href="#">
+                                    <img src="/asset/img/crt-admin-logo.svg" width="90%" alt="Certaining Logo" />
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <!-- Profile Section -->
+                        <div class="profile clearfix">
+                            <div class="profile_info">
+                                <h2 id="lblName" runat="server" class="d-none"></h2>
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <!-- Sidebar Menu -->
+                        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                            <div class="menu_section">
+                                <ul class="nav side-menu">
+                                    <li>
+                                        <a href="dashboard"><i class="fa fa-home"></i>Dashboard</a>
+                                    </li>
+                                    <li>
+                                        <a href="candidate-history"><i class="fa fa-history" aria-hidden="true"></i>Candidate History</a>
+                                    </li>
+                                    <li>
+                                        <a href="today-exam"><i class="fa fa-desktop"></i>Today's Exam</a>
+                                    </li>
+                                    <li>
+                                        <a href="upcoming-exam"><i class="fa fa-table"></i>Upcoming Exam</a>
+                                    </li>
+                                    <li>
+                                        <a href="cancel-exam"><i class="fa fa-calendar-times-o" aria-hidden="true"></i>Cancel Exam</a>
+                                    </li>
+                                    <li>
+                                        <a href="sechdule"><i class="fa fa-edit"></i>Schedule New Exam</a>
+                                    </li>
+                                    <li>
+                                        <a href="reschedule"><i class="fa fa-refresh" aria-hidden="true"></i>Re-schedule Exam</a>
+                                    </li>
+                                    <li>
+                                        <a href="login-detail"><i class="fa fa-sign-in" aria-hidden="true"></i>Exam Login Details</a>
+                                    </li>
+                                    <li>
+                                        <a href="voucher-request"><i class="fa fa-ticket" aria-hidden="true"></i>Voucher Request</a>
+                                    </li>
+                                    <li>
+                                        <a href="report"><i class="fa fa-list-alt" aria-hidden="true"></i>Report</a>
+                                    </li>
+                                    <li style="display:none;">
+                                        <a href="https://certaining.org/contact-us" target="_blank">
+                                            <i class="fa fa-phone" aria-hidden="true"></i>Support
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="manage-seats"><i class="fa fa-check" aria-hidden="true"></i>Seat Management</a>
+                                    </li>
+                                    <li>
+                                        <a href="manage-hours"><i class="fa fa-check" aria-hidden="true"></i>Operational Hours</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Sidebar Footer (hidden) -->
+                  <%--      <div class="sidebar-footer hidden-small" style="display:none;">
+                            <a data-toggle="tooltip" data-placement="top" title="Settings">
+                                <i class="fa fa-cog" aria-hidden="true"></i>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="Logout" href="login">
+                                <i class="fa fa-power-off" aria-hidden="true"></i>
+                            </a>
+                        </div>--%>
+
+                    </div>
+                </div>
+                <!-- /Sidebar Navigation -->
+
+                <!-- ===== Top Navigation Bar ===== -->
+                <div class="top_nav">
+                    <div class="nav_menu">
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a> 
+                        </div>
+                        <nav class="nav navbar-nav">
+                            <ul class="navbar-right">
+                                <li class="nav-item dropdown open p-2" >
+                                    <a href="javascript:;" class="user-profile dropdown-toggle"
+                                       aria-haspopup="true" id="navbarDropdown"
+                                       data-toggle="dropdown" aria-expanded="false">
+                                        <img src="/asset/img/profile.webp" alt="Porfile" />
+                                        <asp:Label ID="lblName1" runat="server"></asp:Label>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="Profile">Profile</a>
+                                        <a class="dropdown-item" href="change-password">Change Password</a>
+                                        <a class="dropdown-item" href="https://certaining.org/contact-us" target="_blank" style="display:none;">Support</a>
+                                        <a class="dropdown-item" href="login"><i class="fa fa-sign-out pull-right"></i>Log Out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- /Top Navigation Bar -->
+
+                <!-- ===== Page Content ===== -->
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+
+                <!-- ===== Modal: Manage Hours ===== -->
+                <div class="modal fade" id="dvManageHours" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content" style="border-radius: 12px; overflow: hidden;">
+                            <div class="modal-header te-card__header--accent" style="border: none;">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="fa fa-clock-o" style="color: white; font-size: 1.25rem;"></i>
+                                    <h5 id="hTittleHours" runat="server" class="modal-title mb-0" style="color: white; font-weight: 600; font-size: 1.25rem;">Create Hours</h5>
+                                </div>
+                                <button type="button" class="close text-white" data-dismiss="modal"
+                                        aria-label="Close" onclick="RefreshManageHours();"
+                                        style="background: none; border: none; font-size: 2rem; opacity: 1; margin-top: -10px;">
+                                    <span aria-hidden="true" class="modal-close-btn">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body bg-light">
+                                <div class="container-fluid">
+
+                                    <!-- Type -->
+                                    <div class="row align-items-center mb-3">
+                                        <div class="col-md-3 fw-bold">Type:</div>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddlHolidaysTypes" runat="server"
+                                                CssClass="form-control te-select classResetHour" onchange="TypeTiming();">
+                                                <asp:ListItem Text="-- Select Type --" Value="-1"></asp:ListItem>
+                                                <asp:ListItem Text="Timing" Value="Timing"></asp:ListItem>
+                                                <asp:ListItem Text="Holidays" Value="Holidays"></asp:ListItem>
+                                            </asp:DropDownList>
+                                            <asp:Label ID="lblHolidaysTypes" runat="server"
+                                                Text="Please select any type."
+                                                Style="display: none; color: red;" CssClass="te-error-msg mt-1 d-block"></asp:Label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Start Date -->
+                                    <div class="row align-items-center mb-3">
+                                        <div class="col-md-3 fw-bold">Start Date:</div>
+                                        <div class="col-md-6">
+                                            <asp:TextBox ID="txtStartDate" runat="server"
+                                                CssClass="form-control te-input" placeholder="Select Start Date"
+                                                AutoCompleteType="Disabled" autocomplete="off"
+                                                Style="cursor: text !important;"></asp:TextBox>
+                                            <asp:Label ID="lblStartDate" runat="server"
+                                                Text="Please select the start date."
+                                                Style="display: none; color: red;" CssClass="te-error-msg mt-1 d-block"></asp:Label>
+                                        </div>
+                                    </div>
+
+                                    <!-- End Date -->
+                                    <div class="row align-items-center mb-3">
+                                        <div class="col-md-3 fw-bold">End Date:</div>
+                                        <div id="dvEndDate" runat="server" class="col-md-6">
+                                            <asp:TextBox ID="txtEndDate" runat="server"
+                                                CssClass="form-control te-input" placeholder="Select End Date"
+                                                AutoCompleteType="Disabled" autocomplete="off"
+                                                Style="cursor: text !important;"></asp:TextBox>
+                                            <asp:Label ID="lblEndDate" runat="server"
+                                                Text="Please select end date."
+                                                Style="display: none; color: red;" CssClass="te-error-msg mt-1 d-block"></asp:Label>
+                                        </div>
+                                        <div id="dvNoEndDate" runat="server" class="col-md-3">
+                                            <label class="checkbox-inline d-flex align-items-center gap-1">
+                                                <input id="chkNoEndDate" runat="server"
+                                                       class="classResetHour" type="checkbox"
+                                                       onclick="NoEndDate();" />No End Date
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Timings Section -->
+                                    <div id="dvTimingsShow" runat="server">
+
+                                        <!-- Start Time -->
+                                        <div class="row align-items-center mb-3">
+                                            <div id="dvStartTimeText" runat="server" class="col-md-3 fw-bold">Start Time:</div>
+                                            <div id="dvStartTime" runat="server" class="col-md-4">
+                                                <asp:TextBox ID="txtStartTime" runat="server"
+                                                    CssClass="form-control te-input" placeholder="Select Start Time"
+                                                    AutoCompleteType="Disabled" autocomplete="off"
+                                                    Style="cursor: text !important;"></asp:TextBox>
+                                                <asp:Label ID="lblStartTime" runat="server"
+                                                    Text="Please select start time."
+                                                    Style="display: none; color: red;" CssClass="te-error-msg mt-1 d-block"></asp:Label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="checkbox-inline d-flex align-items-center gap-1">
+                                                    <input id="chkAllDay" runat="server"
+                                                           class="classResetHour" type="checkbox"
+                                                           onclick="AllDays();" />All Day
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <!-- End Time -->
+                                        <div id="dvEndTime" runat="server" class="row align-items-center mb-3">
+                                            <div class="col-md-3 fw-bold">End Time:</div>
+                                            <div class="col-md-4">
+                                                <asp:TextBox ID="txtEndTime" runat="server"
+                                                    CssClass="form-control te-input" placeholder="Select End Time"
+                                                    AutoCompleteType="Disabled" autocomplete="off"
+                                                    Style="cursor: text !important;"></asp:TextBox>
+                                                <asp:Label ID="lblEndTime" runat="server"
+                                                    Text="Please select end time."
+                                                    Style="display: none; color: red;" CssClass="te-error-msg mt-1 d-block"></asp:Label>
+                                            </div>
+                                        </div>
+
+                                        <!-- Weekly Off Days -->
+                                        <div class="row align-items-start mb-3">
+                                            <div class="col-md-3 fw-bold pt-1">Weekly Off Day(s):</div>
+                                            <div class="col-md-9">
+                                                <div id="cblWeakDays" runat="server" class="classResetHour d-flex flex-wrap gap-2">
+                                                    <label class="checkbox-inline d-flex align-items-center gap-1"><input type="checkbox" value="1" />Monday</label>
+                                                    <label class="checkbox-inline d-flex align-items-center gap-1"><input type="checkbox" value="2" />Tuesday</label>
+                                                    <label class="checkbox-inline d-flex align-items-center gap-1"><input type="checkbox" value="3" />Wednesday</label>
+                                                    <label class="checkbox-inline d-flex align-items-center gap-1"><input type="checkbox" value="4" />Thursday</label>
+                                                    <label class="checkbox-inline d-flex align-items-center gap-1"><input type="checkbox" value="5" />Friday</label>
+                                                    <label class="checkbox-inline d-flex align-items-center gap-1"><input type="checkbox" value="6" />Saturday</label>
+                                                    <label class="checkbox-inline d-flex align-items-center gap-1"><input type="checkbox" value="0" />Sunday</label>
+                                                </div>
+                                                <asp:Label ID="lblWeakDays" runat="server"
+                                                    Text="Please check at list one day."
+                                                    Style="display: none; color: red;" CssClass="te-error-msg mt-1 d-block"></asp:Label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Status -->
+                                    <div class="row align-items-center mb-2">
+                                        <div class="col-md-3 fw-bold">Status:</div>
+                                        <div class="col-md-9">
+                                            <asp:DropDownList ID="ddlStatusHours" runat="server"
+                                                CssClass="form-control te-select classResetHour">
+                                                <asp:ListItem Value="1" Text="Active" Selected="True"></asp:ListItem>
+                                                <asp:ListItem Value="0" Text="Inactive"></asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="modal-footer d-flex justify-content-end bg-light" style="border-top: 1px solid #dee2e6;">
+                                <button id="btnResetHours" runat="server" type="button"
+                                        class="btn te-btn-view bg-secondary text-white" onclick="ClearHours();" style="border: none;">Reset</button>
+                                <button id="btnSaveHours" runat="server" data-dismiss="modal"
+                                        type="button" class="te-btn-primary" onclick="SaveHours();" style="padding: 6px 16px; font-size: 14px;">Save</button>
+                                <asp:HiddenField ID="hdnHoursId" runat="server" Value="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Modal: Manage Hours -->
+
+                <!-- ===== Modal: Manage Seats ===== -->
+                <div class="modal fade" id="dvManageSeats" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content" style="border-radius: 12px; overflow: hidden;">
+                            <div class="modal-header te-card__header--accent" style="border: none;">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="fa fa-check-square-o" style="color: white; font-size: 1.25rem;"></i>
+                                    <h5 id="hTittleSeat" runat="server" class="modal-title mb-0" style="color: white; font-weight: 600; font-size: 1.25rem;">Create Seats</h5>
+                                </div>
+                                <button type="button" class="close text-white" data-dismiss="modal"
+                                        aria-label="Close" onclick="RefreshManageSeat();"
+                                        style="background: none; border: none; font-size: 2rem; opacity: 1; margin-top: -10px;">
+                                    <span aria-hidden="true" class="modal-close-btn">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body bg-light">
+                                <div class="container-fluid">
+                                    <div class="row align-items-center mb-3">
+                                        <div class="col-md-4 fw-bold">Seat Name:</div>
+                                        <div class="col-md-8">
+                                            <asp:TextBox ID="txtSeatName" runat="server"
+                                                CssClass="form-control te-input classResetSeat"
+                                                placeholder="Enter Seat Name"></asp:TextBox>
+                                            <asp:Label ID="lblSeatName" runat="server"
+                                                Text="Please enter seat name first."
+                                                Style="display: none; color: red;" CssClass="te-error-msg mt-1 d-block"></asp:Label>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center mb-2">
+                                        <div class="col-md-4 fw-bold">Status:</div>
+                                        <div class="col-md-8">
+                                            <div>
+                                                <asp:DropDownList ID="ddlStatusSeat" runat="server"
+                                                    CssClass="form-control te-select classResetSeat">
+                                                    <asp:ListItem Value="1" Text="Active" Selected="True"></asp:ListItem>
+                                                    <asp:ListItem Value="0" Text="Inactive"></asp:ListItem>
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-end bg-light" style="border-top: 1px solid #dee2e6;">
+                                <button id="btnResetSeat" runat="server" type="button"
+                                        class="btn te-btn-view bg-secondary text-white" onclick="ClearSeat();" style="border: none;">Reset</button>
+                                <button id="btnSaveSeat" runat="server" type="button"
+                                        data-dismiss="modal" class="te-btn-primary" onclick="SaveSeat();" style="padding: 6px 16px; font-size: 14px;">Save</button>
+                                <asp:HiddenField ID="hdnSeatId" runat="server" Value="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Modal: Manage Seats -->
+
+                <!-- ===== Footer ===== -->
+                <footer>
+                    <div class="text-center py-4">
+                        &copy; 2024 Certaining, All Rights Reserved.
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+
+            </div>
+        </div>
+
+        <!-- ========== JavaScript (loaded at bottom for performance) ========== -->
+
+        <!-- JS: jQuery (must load first) -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+        <!-- JS: jQuery UI -->
+        <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+
+        <!-- JS: Bootstrap Bundle -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- JS: Bootstrap Multiselect -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/1.1.2/js/bootstrap-multiselect.min.js" type="text/javascript"></script>
+
+        <!-- JS: jQuery Confirm -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+        <!-- JS: Timepicker -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
+        <!-- JS: Custom App Scripts -->
+        <script src="/asset/js/my.js"></script>
+
+        <!-- JS: Inline Application Logic -->
+        <script type="text/javascript">
+
+            // ===== Message Dialog =====
+            function SetDialogMessage(meesage, sucess, clossUrl) {
+                clossUrl = clossUrl || '';
+                var dvMessageDisplay = $('#<%=dvMessage.ClientID %>');
+                var dvSuccess = $('#<%=dvSuccess.ClientID %>');
+                var dvError = $('#<%=dvError.ClientID %>');
+                var dvSucessMessage = $('#<%=dvSucessMessage.ClientID %>');
+                var dvErrorMessage = $('#<%=dvErrorMessage.ClientID %>');
+                var dvMessageSucess = $('#<%=dvMessageSucess.ClientID %>');
+                var dvMessageError = $('#<%=dvMessageError.ClientID %>');
+                dvSuccess.hide();
+                dvError.hide();
+                dvSucessMessage.hide();
+                dvErrorMessage.hide();
+                dvMessageDisplay.show();
+                if (sucess == 'true') {
+                    dvSuccess.show();
+                    dvSucessMessage.show();
+                    dvMessageSucess.html(meesage);
+                }
+                else {
+                    dvError.show();
+                    dvErrorMessage.show();
+                    dvMessageError.html(meesage);
+                }
+
+                dvMessageDisplay.dialog({
+                    hide: "puff",
+                    show: "puff",
+                    modal: true,
+                    dialogClass: 'fixed-dialog'
+                });
+
+                if (clossUrl != '') {
+                    $(".ui-dialog-titlebar-close").click(function () {
+                        window.location.href = clossUrl;
+                    });
+                }
+            }
+
+            // ===== Seat Management =====
+
+            function SetHideResetSeatButton() {
+                $(".classResetSeat").on("keypress keyup blur focusout change", function (event) {
+                    var txtSeatName = $('#<%=txtSeatName.ClientID %>').val();
+                    var ddlStatusSeat = $('#<%=ddlStatusSeat.ClientID %>').val();
+                    var hdnSeatId = $('#<%=hdnSeatId.ClientID %>').val();
+                    if (txtSeatName == '' && (ddlStatusSeat == '' || ddlStatusSeat == '1') && hdnSeatId == '') {
+                        $('#<%=btnResetSeat.ClientID %>').prop('disabled', true);
+                    }
+                    else {
+                        $('#<%=btnResetSeat.ClientID %>').prop('disabled', false);
+                    }
+                });
+            }
+
+            function SaveSeat() {
+                if (VaildSeat()) {
+                    var txtSeatName = $('#<%=txtSeatName.ClientID %>').val();
+                    var ddlStatusSeat = $('#<%=ddlStatusSeat.ClientID %>').val();
+                    var hdnSeatId = $('#<%=hdnSeatId.ClientID %>').val();
+                    $.ajax({
+                        url: 'ManageHoursSeats.asmx/SaveSeat',
+                        dataType: "json",
+                        type: "POST",
+                        async: false,
+                        contentType: "application/json; charset=utf-8",
+                        data: "{'strSeatName':'" + txtSeatName + "','strStatusSeat':'" + ddlStatusSeat + "','strSeatId':'" + hdnSeatId + "'}",
+                        success: function () {
+                            if (hdnSeatId == '') {
+                                SetDialogMessage('Seats added successfully.', 'true');
+                                RefreshManageSeat();
+                            }
+                            else {
+                                SetDialogMessage('Seats update successfully.', 'true');
+                                RefreshManageSeat();
+                            }
+                        },
+                        error: function () {
+                            SetDialogMessage('Something went wrong.', 'false');
+                        }
+                    });
+                }
+                else {
+                    return false;
+                }
+            }
+
+            function BindSeatData(strSeatId) {
+                $.ajax({
+                    url: 'ManageHoursSeats.asmx/GetSeatData',
+                    dataType: "json",
+                    type: "POST",
+                    async: false,
+                    contentType: "application/json; charset=utf-8",
+                    data: "{'strSeatId':'" + strSeatId + "'}",
+                    success: function (data) {
+                        $('#<%=txtSeatName.ClientID %>').val(data.d[0].SeatName);
+                        $('#<%=ddlStatusSeat.ClientID %>').val(data.d[0].SeatStatus);
+                        $('#<%=hdnSeatId.ClientID %>').val(data.d[0].SeatId);
+                        $('#<%=btnSaveSeat.ClientID %>').html('Update');
+                        $('#<%=hTittleSeat.ClientID %>').html('Edit Seat');
+                        $('#<%=btnResetSeat.ClientID %>').prop('disabled', false);
+                    },
+                    error: function () {
+                        SetDialogMessage('Something went wrong.', 'false');
+                    }
+                });
+            }
+
+            function DeleteSeatData(strSeatId) {
+                if (confirm('Do you want to delete this record ?')) {
+                    $.ajax({
+                        url: 'ManageHoursSeats.asmx/DeleteSeatData',
+                        dataType: "json",
+                        type: "POST",
+                        async: false,
+                        contentType: "application/json; charset=utf-8",
+                        data: "{'strSeatId':'" + strSeatId + "'}",
+                        success: function (data) {
+                            RefreshManageSeat();
+                        },
+                        error: function () {
+                            SetDialogMessage('Something went wrong.', 'false');
+                        }
+                    });
+                }
+            }
+
+            function VaildSeat() {
+                var hdnSeatId = $('#<%=hdnSeatId.ClientID %>').val();
+                var txtSeatName = $('#<%=txtSeatName.ClientID %>').val();
+                if (txtSeatName == '') {
+                    $('#<%=lblSeatName.ClientID %>').show();
+                    SetHideMessage($('#<%=lblSeatName.ClientID %>'));
+                    return false;
+                }
+                else {
+                    var value = false;
+                    $.ajax({
+                        url: 'ManageHoursSeats.asmx/CheckSeatName',
+                        dataType: "json",
+                        type: "POST",
+                        async: false,
+                        contentType: "application/json; charset=utf-8",
+                        data: "{'strSeatName':'" + txtSeatName + "','strSeatId':'" + hdnSeatId + "'}",
+                        success: function (data) {
+                            if (data.d)
+                                value = true;
+                            else {
+                                SetDialogMessage('Same seat name already saved.', 'false');
+                                value = false;
+                            }
+                        },
+                        error: function () {
+                            SetDialogMessage('Something went wrong.', 'false');
+                            value = false;
+                        }
+                    });
+                    return value;
+                }
+            }
+
+            function ClearSeat() {
+                $('#<%=btnResetSeat.ClientID %>').prop('disabled', true);
+                $('#<%=btnSaveSeat.ClientID %>').html('Save');
+                $('#<%=hTittleSeat.ClientID %>').html('Create Seats');
+                $('#<%=txtSeatName.ClientID %>').val('');
+                $('#<%=ddlStatusSeat.ClientID %>').val('1');
+                $('#<%=hdnSeatId.ClientID %>').val('');
+            }
+
+            function RefreshManageSeat() {
+                var path = window.location.pathname.split("/").pop();
+                if (path == 'ManageSeats.aspx' || path == 'manage-seats') {
+                    $.ajax({
+                        url: 'ManageHoursSeats.asmx/GetAllSeatData',
+                        dataType: "json",
+                        type: "POST",
+                        async: false,
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            BindManageSeatRepeater(data);
+                        },
+                        error: function () {
+                            SetDialogMessage('Something went wrong.', 'false');
+                        }
+                    });
+                }
+                ClearSeat();
+            }
+
+            // ===== Hours Management =====
+
+            function SetHideResetHourButton() {
+                $(".classResetHour").on("keypress keyup blur focusout change", function (event) {
+                    var ddlHolidaysTypes = $('#<%=ddlHolidaysTypes.ClientID %>').val();
+                    var ddlStatusHours = $('#<%=ddlStatusHours.ClientID %>').val();
+                    var chkNoEndDate = $('#<%=chkNoEndDate.ClientID %>')[0].checked;
+                    var chkAllDay = $('#<%=chkAllDay.ClientID %>')[0].checked;
+                    var dvTimingsShow = $('#<%=dvTimingsShow.ClientID %>');
+                    var hdnHoursId = $('#<%=hdnHoursId.ClientID %>').val();
+                    var cblWeakDays = '';
+                    var i = 0;
+                    $('#<%=cblWeakDays.ClientID %> input:checked').each(function () {
+                        cblWeakDays = cblWeakDays + $('#<%=cblWeakDays.ClientID %> input:checked')[i].value + ',';
+                        i++;
+                    });
+                    if ((ddlHolidaysTypes == '' || ddlHolidaysTypes == '-1') && !chkNoEndDate && !chkAllDay && cblWeakDays == '' && (ddlStatusHours == '' || ddlStatusHours == '1') && hdnHoursId == '') {
+                        $('#<%=btnResetHours.ClientID %>').prop('disabled', true);
+                    }
+                    else {
+                        SetEnableDisabledResetHoursButton();
+                    }
+                });
+            }
+
+            function AllDays() {
+                var chkAllDay = $('#<%=chkAllDay.ClientID %>');
+                var dvStartTime = $('#<%=dvStartTime.ClientID %>');
+                var dvEndTime = $('#<%=dvEndTime.ClientID %>');
+                var dvStartTimeText = $('#<%=dvStartTimeText.ClientID %>');
+                dvStartTime.show();
+                dvEndTime.show();
+                dvStartTimeText.html('Start Time:');
+                if (chkAllDay[0].checked) {
+                    dvStartTime.hide();
+                    dvEndTime.hide();
+                    dvStartTimeText.html('Timing:');
+                }
+            }
+
+            function NoEndDate() {
+                var chkNoEndDate = $('#<%=chkNoEndDate.ClientID %>');
+                var dvEndDate = $('#<%=dvEndDate.ClientID %>');
+                dvEndDate.show();
+                if (chkNoEndDate[0].checked) {
+                    dvEndDate.hide();
+                }
+            }
+
+            function SaveHours() {
+                var data = VaildHours();
+                if (data != '') {
+                    var hdnHoursId = $('#<%=hdnHoursId.ClientID %>').val();
+                    $.ajax({
+                        url: 'ManageHoursSeats.asmx/SaveHour',
+                        dataType: "json",
+                        type: "POST",
+                        async: false,
+                        contentType: "application/json; charset=utf-8",
+                        data: data,
+                        success: function () {
+                            if (hdnHoursId == '') {
+                                SetDialogMessage('Hours added successfully.', 'true');
+                                RefreshManageHours();
+                            }
+                            else {
+                                SetDialogMessage('Hours update successfully.', 'true');
+                                RefreshManageHours();
+                            }
+                        },
+                        error: function () {
+                            SetDialogMessage('Something went wrong.', 'false');
+                        }
+                    });
+                }
+                else {
+                    return false;
+                }
+            }
+
+            function BindHourData(strHourId) {
+                $.ajax({
+                    url: 'ManageHoursSeats.asmx/GetHourData',
+                    dataType: "json",
+                    type: "POST",
+                    async: false,
+                    contentType: "application/json; charset=utf-8",
+                    data: "{'strHourId':'" + strHourId + "'}",
+                    success: function (data) {
+                        ClearHours();
+                        $('#<%=ddlHolidaysTypes.ClientID %>').val(data.d[0].Holidays);
+                        $('#<%=txtStartDate.ClientID %>').val(data.d[0].StartDate);
+                        $('#<%=txtEndDate.ClientID %>').val(data.d[0].EndDate);
+                        if (data.d[0].NoEndDate == "True") {
+                            $('#<%=chkNoEndDate.ClientID %>')[0].checked = true;
+                            NoEndDate();
+                        }
+                        $('#<%=txtStartTime.ClientID %>').val(data.d[0].StartTime);
+                        $('#<%=txtEndTime.ClientID %>').val(data.d[0].EndTime);
+                        if (data.d[0].AllDay == "True") {
+                            $('#<%=chkAllDay.ClientID %>')[0].checked = true;
+                            AllDays();
+                        }
+                        $('#<%=ddlStatusHours.ClientID %>').val(data.d[0].Status);
+                        $('#<%=hdnHoursId.ClientID %>').val(data.d[0].HourId);
+                        var WeeklyOff = data.d[0].WeeklyOff.split(',');
+                        var cblWeakDays = $('#<%=cblWeakDays.ClientID %> input');
+                        for (var j = 0; cblWeakDays.length > j; j++) {
+                            cblWeakDays[j].checked = (WeeklyOff.indexOf(cblWeakDays[j].value) != -1);
+                        }
+                        var dvTimingsShow = $('#<%=dvTimingsShow.ClientID %>');
+                        var dvNoEndDate = $('#<%=dvNoEndDate.ClientID %>');
+                        if (data.d[0].Holidays == 'Holidays') {
+                            dvTimingsShow.hide();
+                            dvNoEndDate.hide();
+                            $('#<%=hTittleHours.ClientID %>').html('Edit Holiday');
+                        }
+                        else {
+                            $('#<%=hTittleHours.ClientID %>').html('Edit Timing');
+                        }
+                        $('#<%=ddlHolidaysTypes.ClientID %>').prop("disabled", true);
+                        $('#<%=btnSaveHours.ClientID %>').html('Update');
+                        $('#<%=btnResetHours.ClientID %>').prop('disabled', false);
+                    },
+                    error: function () {
+                        SetDialogMessage('Something went wrong.', 'false');
+                    }
+                });
+            }
+
+            function DeleteHourData(strHourId) {
+                if (confirm('Do you want to delete this record ?')) {
+                    $.ajax({
+                        url: 'ManageHoursSeats.asmx/DeleteHourData',
+                        dataType: "json",
+                        type: "POST",
+                        async: false,
+                        contentType: "application/json; charset=utf-8",
+                        data: "{'strHourId':'" + strHourId + "'}",
+                        success: function (data) {
+                            RefreshManageHours();
+                        },
+                        error: function () {
+                            SetDialogMessage('Something went wrong.', 'false');
+                        }
+                    });
+                }
+            }
+
+            function VaildHours() {
+                var ddlHolidaysTypes = $('#<%=ddlHolidaysTypes.ClientID %>').val();
+                var txtStartDate = $('#<%=txtStartDate.ClientID %>').val();
+                var txtEndDate = $('#<%=txtEndDate.ClientID %>').val();
+                var chkNoEndDate = $('#<%=chkNoEndDate.ClientID %>')[0].checked;
+                var txtStartTime = $('#<%=txtStartTime.ClientID %>').val();
+                var txtEndTime = $('#<%=txtEndTime.ClientID %>').val();
+                var chkAllDay = $('#<%=chkAllDay.ClientID %>')[0].checked;
+                var ddlStatusHours = $('#<%=ddlStatusHours.ClientID %>').val();
+                var hdnHoursId = $('#<%=hdnHoursId.ClientID %>').val();
+                var dvTimingsShow = $('#<%=dvTimingsShow.ClientID %>');
+                var lblHolidaysTypes = $('#<%=lblHolidaysTypes.ClientID %>');
+                var lblStartDate = $('#<%=lblStartDate.ClientID %>');
+                var lblEndDate = $('#<%=lblEndDate.ClientID %>');
+                var lblStartTime = $('#<%=lblStartTime.ClientID %>');
+                var lblEndTime = $('#<%=lblEndTime.ClientID %>');
+                var lblWeakDays = $('#<%=lblWeakDays.ClientID %>');
+                var cblWeakDays = '';
+                var i = 0;
+                lblHolidaysTypes.hide();
+                lblStartDate.hide();
+                lblEndDate.hide();
+                lblStartTime.hide();
+                lblEndTime.hide();
+                lblWeakDays.hide();
+                $('#<%=cblWeakDays.ClientID %> input:checked').each(function () {
+                    cblWeakDays = cblWeakDays + $('#<%=cblWeakDays.ClientID %> input:checked')[i].value + ',';
+                    i++;
+                });
+                if (ddlHolidaysTypes == '-1') {
+                    lblHolidaysTypes.show();
+                    SetHideMessage(lblHolidaysTypes);
+                    return '';
+                }
+                else if (txtStartDate == '') {
+                    lblStartDate.show();
+                    SetHideMessage(lblStartDate);
+                    return '';
+                }
+                else if (txtEndDate == '' && !chkNoEndDate) {
+                    lblEndDate.show();
+                    SetHideMessage(lblEndDate);
+                    return '';
+                }
+                else if (txtStartTime == '' && !chkAllDay && dvTimingsShow.css('display') != 'none') {
+                    lblStartTime.show();
+                    SetHideMessage(lblStartTime);
+                    return '';
+                }
+                else if (txtEndTime == '' && !chkAllDay && dvTimingsShow.css('display') != 'none') {
+                    lblEndTime.show();
+                    SetHideMessage(lblEndTime);
+                    return '';
+                }
+                else if (cblWeakDays == '' && dvTimingsShow.css('display') != 'none') {
+                    lblWeakDays.show();
+                    SetHideMessage(lblWeakDays);
+                    return '';
+                }
+                else {
+                    return "{'strHoursId':'" + hdnHoursId + "','strHolidaysTypes':'" + ddlHolidaysTypes + "','strStartDate':'" + txtStartDate + "','strEndDate':'" + txtEndDate + "','strNoEndDate':'" + chkNoEndDate + "','strStartTime':'" + txtStartTime + "','strEndTime':'" + txtEndTime + "','strAllDay':'" + chkAllDay + "','strWeakDays':'" + cblWeakDays + "','strStatus':'" + ddlStatusHours + "'}";
+                }
+            }
+
+            function ClearHours() {
+                $('#<%=btnResetHours.ClientID %>').prop('disabled', true);
+                $('#<%=btnSaveHours.ClientID %>').html('Save');
+                $('#<%=hTittleHours.ClientID %>').html('Create Hours');
+                $('#<%=ddlHolidaysTypes.ClientID %>').val('-1');
+                $('#<%=txtStartDate.ClientID %>').val('');
+                $('#<%=txtEndDate.ClientID %>').val('');
+                $('#<%=chkNoEndDate.ClientID %>')[0].checked = false;
+                $('#<%=txtStartTime.ClientID %>').val('');
+                $('#<%=txtEndTime.ClientID %>').val('');
+                $('#<%=chkAllDay.ClientID %>')[0].checked = false;
+                $('#<%=ddlStatusHours.ClientID %>').val('1');
+                $('#<%=hdnHoursId.ClientID %>').val('');
+                $('#<%=ddlHolidaysTypes.ClientID %>').prop("disabled", false);
+                var lblHolidaysTypes = $('#<%=lblHolidaysTypes.ClientID %>');
+                var lblStartDate = $('#<%=lblStartDate.ClientID %>');
+                var lblEndDate = $('#<%=lblEndDate.ClientID %>');
+                var lblStartTime = $('#<%=lblStartTime.ClientID %>');
+                var lblEndTime = $('#<%=lblEndTime.ClientID %>');
+                var lblWeakDays = $('#<%=lblWeakDays.ClientID %>');
+                $('#<%=cblWeakDays.ClientID %> input:checked').each(function () {
+                    $('#<%=cblWeakDays.ClientID %> input:checked')[0].checked = false;
+                });
+                lblHolidaysTypes.hide();
+                lblStartDate.hide();
+                lblEndDate.hide();
+                lblStartTime.hide();
+                lblEndTime.hide();
+                lblWeakDays.hide();
+                NoEndDate();
+                AllDays();
+                TypeTiming();
+            }
+
+            function RefreshManageHours() {
+                var path = window.location.pathname.split("/").pop();
+                if (path == 'ManageHours.aspx' || path == 'manage-hours') {
+                    $.ajax({
+                        url: 'ManageHoursSeats.asmx/GetAllHoursData',
+                        dataType: "json",
+                        type: "POST",
+                        async: false,
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            BindManageHoursRepeater(data);
+                        },
+                        error: function () {
+                            SetDialogMessage('Something went wrong.', 'false');
+                        }
+                    });
+                }
+                ClearHours();
+            }
+
+            // ===== Utility Functions =====
+
+            // ===== Active Sidebar Highlighting =====
+            $(document).ready(function () {
+                var path = window.location.pathname.split("/").pop();
+                if (path == '' || path == 'default.aspx') { 
+                    path = 'dashboard'; 
+                }
+
+                $('#sidebar-menu a').each(function () {
+                    var href = $(this).attr('href');
+                    if (path === href) {
+                        $(this).parent('li').addClass('current-page active');
+                    }
+                });
+
+                // Menu toggle icon rotation
+                $('#menu_toggle').on('click', function() {
+                    $(this).find('i').toggleClass('rotate180');
+                });
+            });
+
+            function SetHideMessage(msgLabelID) {
+                setTimeout(function () {
+                    $(msgLabelID).hide();
+                }, 4000, null);
+            }
+
+            function SetDateTimePicker() {
+                $('#<%=txtStartDate.ClientID %>').datepicker({
+                    minDate: new Date(),
+                    dateFormat: 'dd-MM-yy',
+                    setDate: new Date(),
+                    onSelect: SetEnableDisabledResetHoursButton
+                });
+                $('#<%=txtEndDate.ClientID %>').datepicker({
+                    minDate: new Date(),
+                    dateFormat: 'dd-MM-yy',
+                    setDate: new Date(),
+                    onSelect: SetEnableDisabledResetHoursButton
+                });
+                $('#<%=txtStartTime.ClientID %>').timepicker({ change: SetEnableDisabledResetHoursButton });
+                $('#<%=txtEndTime.ClientID %>').timepicker({ change: SetEnableDisabledResetHoursButton });
+            }
+
+            function SetEnableDisabledResetHoursButton() {
+                $('#<%=btnResetHours.ClientID %>').prop('disabled', false);
+            }
+
+            function TypeTiming() {
+                var ddlHolidaysTypes = $('#<%=ddlHolidaysTypes.ClientID %>').val();
+                var dvTimingsShow = $('#<%=dvTimingsShow.ClientID %>');
+                var dvNoEndDate = $('#<%=dvNoEndDate.ClientID %>');
+                var value = false;
+                dvNoEndDate.show();
+                dvTimingsShow.show();
+                if (ddlHolidaysTypes == 'Holidays') {
+                    dvTimingsShow.hide();
+                    dvNoEndDate.hide();
+                }
+                else if (ddlHolidaysTypes == 'Timing') {
+                    $.ajax({
+                        url: 'ManageHoursSeats.asmx/CheckHolidaysType',
+                        dataType: "json",
+                        type: "POST",
+                        async: false,
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            if (!data.d) {
+                                SetDialogMessage('Timing of this center has already been updated in the database. Kindly update the database.', 'false');
+                                ClearHours();
+                            }
+                        },
+                        error: function () {
+                            SetDialogMessage('Something went wrong.', 'false');
+                            ClearHours();
+                        }
+                    });
+                }
+            }
+
+        </script>
+    </form>
+</body>
+</html>
