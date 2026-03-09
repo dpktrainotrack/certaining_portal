@@ -6,7 +6,6 @@
     <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <div class="right_col" role="main">
             <div class="container">
-
                 <!-- ===== Breadcrumb Navigation ===== -->
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
@@ -111,8 +110,7 @@
                                                             <%#Eval("exam_time") %>
                                                         </td>
                                                         <td>
-                                                            <asp:Label ID="lbl_testing_exam_date111"
-                                                                runat="server"
+                                                            <asp:Label ID="lbl_testing_exam_date111" runat="server"
                                                                 Text='<%#Eval("Examstatus").ToString()=="Waiting to get hold of" ? "Not Started" : "" %>'
                                                                 ForeColor='<%# (Eval("Examstatus").Equals("Waiting to get hold of")) ?  System.Drawing.Color.Red : System.Drawing.Color.DarkBlue %>' />
                                                         </td>
