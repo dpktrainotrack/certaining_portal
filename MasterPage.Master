@@ -93,25 +93,53 @@
 
         <!-- ========== Main Container ========== -->
         <div class="container body">
+                                <!-- ===== Top Navigation Bar ===== -->
+                    <div class="top_nav">
+                        <div class="nav_menu">
+                            <div class="crt-logo-wrapper">
+    <a href="#">
+        <img src="/asset/img/certlogob.png" width="100%" alt="Certaining Logo" />
+    </a>
+</div>
+                           
+                            <nav class="nav navbar-nav">
+                                <ul class="navbar-right">
+                                    <li class="nav-item dropdown open p-2" >
+                                        <a href="javascript:;" class="user-profile dropdown-toggle"
+                                           aria-haspopup="true" id="navbarDropdown"
+                                           data-toggle="dropdown" aria-expanded="false">
+                                            <img src="/asset/img/profile.webp" alt="Porfile" />
+                                            <asp:Label ID="lblName1" runat="server"></asp:Label>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="Profile">Profile</a>
+                                            <a class="dropdown-item" href="change-password">Change Password</a>
+                                            <a class="dropdown-item" href="https://certaining.org/contact-us" target="_blank" style="display:none;">Support</a>
+                                            <a class="dropdown-item" href="login"><i class="fa fa-sign-out pull-right"></i>Log Out</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- /Top Navigation Bar -->
             <div class="main_container">
 
                 <!-- ===== Sidebar Navigation ===== -->
-                <div class="col-md-3 left_col">
-                    <div class="scroll-view">
+                <div class=" left_col">
+                    <div class="scroll-view" >
 
                         <!-- Logo -->
                         <div class="navbar nav_title">
-                            <div class="crt-logo-wrapper">
-                                <a href="#">
-                                    <img src="/asset/img/crt-admin-logo.svg" width="90%" alt="Certaining Logo" />
-                                </a>
-                            </div>
+                             <div class="nav toggle">
+     <a id="menu_toggle"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a> 
+ </div>
                         </div>
 
                         <div class="clearfix"></div>
 
                         <!-- Profile Section -->
-                        <div class="profile clearfix">
+                        <div class="profile clearfix d-none">
                             <div class="profile_info">
                                 <h2 id="lblName" runat="server" class="d-none"></h2>
                             </div>
@@ -185,37 +213,15 @@
                 </div>
                 <!-- /Sidebar Navigation -->
 
-                <!-- ===== Top Navigation Bar ===== -->
-                <div class="top_nav">
-                    <div class="nav_menu">
-                        <div class="nav toggle">
-                            <a id="menu_toggle"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a> 
-                        </div>
-                        <nav class="nav navbar-nav">
-                            <ul class="navbar-right">
-                                <li class="nav-item dropdown open p-2" >
-                                    <a href="javascript:;" class="user-profile dropdown-toggle"
-                                       aria-haspopup="true" id="navbarDropdown"
-                                       data-toggle="dropdown" aria-expanded="false">
-                                        <img src="/asset/img/profile.webp" alt="Porfile" />
-                                        <asp:Label ID="lblName1" runat="server"></asp:Label>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="Profile">Profile</a>
-                                        <a class="dropdown-item" href="change-password">Change Password</a>
-                                        <a class="dropdown-item" href="https://certaining.org/contact-us" target="_blank" style="display:none;">Support</a>
-                                        <a class="dropdown-item" href="login"><i class="fa fa-sign-out pull-right"></i>Log Out</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <!-- /Top Navigation Bar -->
+                <!-- ===== App Content Column (Top Nav + Content + Footer) ===== -->
+                <div class="app-content">
 
-                <!-- ===== Page Content ===== -->
-                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                </asp:ContentPlaceHolder>
+                    
+
+                    <!-- ===== Page Content ===== -->
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+                    </asp:ContentPlaceHolder>
 
                 <!-- ===== Modal: Manage Hours ===== -->
                 <div class="modal fade" id="dvManageHours" tabindex="-1" role="dialog"
@@ -430,14 +436,19 @@
                 <!-- /Modal: Manage Seats -->
 
                 <!-- ===== Footer ===== -->
-                <footer>
-                    <div class="text-center py-4">
-                        &copy; 2024 Certaining, All Rights Reserved.
-                    </div>
-                    <div class="clearfix"></div>
-                </footer>
+            
+
+                </div>
+      
+                <!-- /App Content Column -->
 
             </div>
+                            <footer>
+    <div class="text-center py-4">
+        &copy;  <span id="copyright-year"> </span> Certaining, All Rights Reserved.
+    </div>
+    <div class="clearfix"></div>
+</footer>
         </div>
 
         <!-- ========== JavaScript (loaded at bottom for performance) ========== -->
@@ -465,7 +476,8 @@
 
         <!-- JS: Inline Application Logic -->
         <script type="text/javascript">
-
+            let CurrentYearTS = new Date().getFullYear();
+            document.getElementById("copyright-year").innerHTML = CurrentYearTS;
             // ===== Message Dialog =====
             function SetDialogMessage(meesage, sucess, clossUrl) {
                 clossUrl = clossUrl || '';
