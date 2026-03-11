@@ -1,4 +1,8 @@
 $(document).ready(function() {
+     
+         
+      
+    
   $("#menu_toggle").click(function() {
       var body = $('body');
       var rightCol = $('.right_col');

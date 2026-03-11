@@ -17,10 +17,11 @@
                 color: #333;
                 height: 100%;
                 cursor: pointer;
+                border: 1px solid #e6e6e6;
             }
 
             .schedule-opt-card:hover {
-                transform: translateY(-8px);
+/*                transform: translateY(-8px);*/
                 box-shadow: 0 15px 35px rgba(0, 115, 136, 0.15);
                 border-color: #007388;
                 text-decoration: none;
@@ -54,7 +55,7 @@
         </style>
     </asp:Content>
     <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <div class="right_col " role="main" style="height: 92vh;">
+        <div class="right_col " role="main" style="height: 84vh;">
             <div class="container">
                 <!-- ===== Breadcrumb Navigation ===== -->
                 <div class="row">
@@ -69,9 +70,9 @@
                 </div>
 
                 <!-- ===== Content ===== -->
-                <div class="row mt-5 justify-content-center align-items-center" style="min-height: 50vh;">
+                <div class="row  justify-content-center align-items-center" style="">
                     <!-- New Candidate -->
-                    <div class="col-lg-5 col-md-6 mb-4">
+                    <div class="col-lg-6 col-md-6 mb-4">
                         <a href="registration" class="schedule-opt-card">
                             <i class="fa fa-user-plus"></i>
                             <h3>New Candidate</h3>
@@ -80,7 +81,7 @@
                     </div>
 
                     <!-- Existing Candidate -->
-                    <div class="col-lg-5 col-md-6 mb-4">
+                    <div class="col-lg-6 col-md-6 mb-4">
                         <a href="existing" class="schedule-opt-card">
                             <i class="fa fa-users"></i>
                             <h3>Existing Candidate</h3>

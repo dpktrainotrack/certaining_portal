@@ -38,7 +38,7 @@
 
         .exam-details-grid {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 18px 32px;
         }
 
@@ -158,7 +158,7 @@
                                         <asp:Label ID="lbl_Phoneno" runat="server" Text="" />
                                     </span>
                                 </div>
-                                <div class="exam-field" style="grid-column: 1 / -1;">
+                                <div class="exam-field" >
                                     <span class="exam-field-label">Address</span>
                                     <span class="exam-field-value">
                                         <asp:Label ID="lbl_Address" runat="server" Text="" />

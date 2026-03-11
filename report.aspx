@@ -126,7 +126,7 @@
         </script>
     </asp:Content>
     <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <div class="right_col" role="main">
+        <div class="right_col" role="main" style="height:84vh">
             <div class="container">
 
                 <!-- ===== Breadcrumb Navigation ===== -->

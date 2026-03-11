@@ -230,19 +230,19 @@
             }
 
             .crt-login-logo img {
-                max-width: 160px;
-                margin-bottom: 6px;
+                max-width: 210px;
+                margin-bottom: 10px;
             }
 
             .crt-login-logo .crt-portal-badge {
                 display: inline-block;
                 background: linear-gradient(135deg, #007388, #0099b3);
                 color: #fff;
-                font-size: 11px;
+                font-size: 14px;
                 font-weight: 600;
                 letter-spacing: 1.5px;
                 text-transform: uppercase;
-                padding: 4px 14px;
+                   padding: 10px 25px;
                 border-radius: 20px;
                 margin-top: 4px;
             }
@@ -251,7 +251,7 @@
 
             .crt-login-header {
                 text-align: center;
-                margin-bottom: 32px;
+                margin-bottom: 12px;
             }
 
             .crt-login-header h1 {
@@ -689,7 +689,7 @@
                 </div>
 
                 <!-- Welcome Header -->
-                <div class="crt-login-header">
+                <div class="crt-login-header pt-2">
                     <%--<h1>Welcome to Partner Portal</h1>--%>
                         <p>Sign in to access your dashboard</p>
                 </div>
@@ -733,20 +733,20 @@
                             OnClick="Login_Check" />
 
                         <!-- Security Badge -->
-                        <div class="crt-security-badge">
+                        <%--<div class="crt-security-badge">
                             <i class="fa-solid fa-shield-halved"></i>
                             <span>Protected with 256-bit SSL encryption</span>
-                        </div>
+                        </div>--%>
 
                     </form>
                 </div>
 
                 <!-- Footer -->
-                <div class="crt-login-footer">
+                <%--<div class="crt-login-footer">
                     <div class="crt-help-text">
                         Need assistance? <a href="https://certaining.org/contact-us" target="_blank">Contact Support</a>
                     </div>
-                </div>
+                </div>--%>
 
                 <!-- Copyright -->
                 <div class="crt-copyright">
