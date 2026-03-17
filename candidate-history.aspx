@@ -28,7 +28,7 @@
                         <div class="te-card__body">
                             <div class="row form-row mb-3 gy-4">
                                 <div class="col-xl-2 col-lg-6 col-12 form-group">
-                                    <label class="te-label">First Name*</label>
+                                    <label class="te-label">First Name <span class="text-danger">*</span></label>
                                     <asp:TextBox ID="txt_first_name1" runat="server" Placeholder="First Name" class="form-control te-input" />
                                 </div>
                                 <div class="col-xl-2 col-lg-6 col-12 form-group">
@@ -36,11 +36,11 @@
                                     <asp:TextBox ID="txt_last_name1" runat="server" Placeholder="Last Name" class="form-control te-input" />
                                 </div>
                                 <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                    <label class="te-label">Email Id*</label>
+                                    <label class="te-label">Email Id <span class="text-danger">*</span></label>
                                     <asp:TextBox ID="txt_search" runat="server" Placeholder="Email" class="form-control te-input" />
                                 </div>
                                 <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                    <label class="te-label">Phone Number*</label>
+                                    <label class="te-label">Phone Number <span class="text-danger">*</span></label>
                                     <asp:TextBox ID="txt_phone_number1" runat="server" Placeholder="Mobile Number" class="form-control te-input" />
                                 </div>
                                 <div class="col-xl-2 col-lg-6 col-12 form-group d-flex align-items-end">

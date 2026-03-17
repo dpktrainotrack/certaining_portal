@@ -1,7 +1,12 @@
 $(document).ready(function() {
      
          
-      
+            //     $(".mobile-screen-icon").on("click", function() {
+            //    f
+            //         // $("#mobileMenu").toggleClass("block-menu");
+            //         alert("hello");
+            //     });
+            // });
     
   $("#menu_toggle").click(function() {
       var body = $('body');
@@ -13,6 +18,7 @@ $(document).ready(function() {
           body.removeClass('nav-sm').addClass('nav-md');
           rightCol.css('min-height', '100vh');
           $(this).removeClass('rotate180');
+
 
       } else {
           // Switching from nav-md to nav-sm

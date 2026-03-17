@@ -750,7 +750,7 @@
 
                 <!-- Copyright -->
                 <div class="crt-copyright">
-                    &copy; <span id="cyValue" style="color:#007388"></span> Certaining. All Rights Reserved.
+                    &copy;<span id="cyValue" ></span> Certaining. All Rights Reserved.
                 </div>
 
             </div>

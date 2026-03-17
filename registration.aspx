@@ -29,7 +29,7 @@
         .registration-card {
             background: #ffffff;
             border-radius: 14px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+           box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
             padding: 24px 24px 20px;
             /*            border-top: 5px solid #007388;*/
             margin-top: 22px;
@@ -52,12 +52,13 @@
             margin-bottom: 18px;
         }
 
-        .registration-form-row label {
-            font-size: 13px;
-            font-weight: 600;
-            color: #4a4a4a;
-            margin-bottom: 4px;
+        .registration-form-row label , .form-label{
+            font-weight: 500;
+    font-size: 14px;
+    /* color: #2c3e50; */
+    margin-bottom: 4px;
         }
+      
 
         .registration-form-row .form-control,
         .registration-form-row select.form-control {
@@ -210,7 +211,7 @@
 
                     <!-- Page intro -->
                     <div class="row">
-                        <div class="col-lg-10 col-lg-offset-1 col-md-12">
+                        <div class="col-12 ">
                             <div class="registration-intro">
                                 <h2 class="registration-title">Follow Steps to Schedule New Exam</h2>
                                 <p class="registration-subtitle">Enter candidate details and contact information to
@@ -486,11 +487,11 @@
         </div> -->
 
                     <div class="row">
-                        <div class="col-lg-10 col-lg-offset-1 col-md-12">
+                        <div class="col-12">
                             <div class="registration-card">
-                                <div class="registration-section-title">
+                              <%--  <div class="registration-section-title">
                                     <h3>Personal & Contact Information </h3>
-                                </div>
+                                </div>--%>
                                 <div class="multiform mt-3">
                                     <div class="provide-details container-fluid" id="section1" runat="server">
 
@@ -594,11 +595,11 @@
 
                                                 <div class="col-12 col-md-6 col-lg-3">
 
-                                                    <label class="form-label">Gender</label>
+                                                    <label class="form-label">Gender <span class="registration-required">*</span></label>
 
                                                     <asp:DropDownList ID="ddGender" runat="server" CssClass="form-select">
 
-                                                        <asp:ListItem Value="0">Gender*</asp:ListItem>
+                                                        <asp:ListItem Value="">Select</asp:ListItem>
                                                         <asp:ListItem Value="M">Male</asp:ListItem>
                                                         <asp:ListItem Value="F">Female</asp:ListItem>
 
@@ -704,11 +705,11 @@
                                         <!-- Candidate ID -->
                                         <div class="row g-3 mb-4">
 
-                                            <div class="col-12 col-lg-6">
+                                            <div class="col-12 col-lg-12">
 
-                                                <p class="fw-semibold">
+                                                <div class="form-label mb-2">
                                                     Candidate ID (Please Note Candidate ID before Proceeding)
-                                                </p>
+                                                </div>
 
                                                 <asp:TextBox ID="txt_Aadhar_Card1" runat="server" CssClass="form-control" MaxLength="12" placeholder="* Registration Number" ReadOnly="true" />
 
@@ -730,13 +731,13 @@
 
                                             <div class="col-12 d-flex flex-wrap gap-2 justify-content-end">
 
-                                                <asp:Button ID="back1" runat="server" Text="Previous" class="btn btn-outline-secondary" ValidationGroup="aacc" OnClick="RamHello1" />
+                                                <asp:Button ID="back1" runat="server" Text="Previous" class="btn crt-btn-signin" ValidationGroup="aacc" OnClick="RamHello1" />
 
                                                 <asp:Button ID="next1" runat="server" Text="Next" class="btn crt-btn-signin" ValidationGroup="aac" OnClick="RamHello11" OnClientClick="abc()" />
 
-                                                <asp:Button ID="Button3" runat="server" Text="Edit Record" Visible="false" class="btn btn-warning" OnClick="Button3_Click" />
+                                                <asp:Button ID="Button3" runat="server" Text="Edit Record" Visible="false" class="btn crt-btn-signin" OnClick="Button3_Click" />
 
-                                                <asp:Button ID="Button4" runat="server" Text="Update Records" Visible="false" class="btn btn-success" ValidationGroup="aac" OnClick="Button4_Click" />
+                                                <asp:Button ID="Button4" runat="server" Text="Update Records" Visible="false" class="btn crt-btn-signin" ValidationGroup="aac" OnClick="Button4_Click" />
 
                                             </div>
 
@@ -845,7 +846,7 @@
 
                                                 <div class="mt-2">
 
-                                                    <input id="btnSelectDate" type="button" class="btn btn-primary" value="Select Date and Time" data-toggle="modal" data-target="#myModal" onclick="SetRegistrstionDateTimePicker();" />
+                                                    <input id="btnSelectDate" type="button" class="te-btn-primary" value="Select Date and Time" data-toggle="modal" data-target="#myModal" onclick="SetRegistrstionDateTimePicker();" />
 
                                                 </div>
 
@@ -892,9 +893,9 @@
 
                                             <div class="col-12 d-flex justify-content-end gap-2 flex-wrap">
 
-                                                <asp:Button ID="back2" runat="server" Text="Previous" class="btn btn-outline-secondary" OnClick="RamHello2" />
+                                                <asp:Button ID="back2" runat="server" Text="Previous" class="te-btn-primary" OnClick="RamHello2" />
 
-                                                <asp:Button ID="next2" runat="server" Text="Next" ValidationGroup="a" class="btn btn-primary" OnClick="RamHello22" />
+                                                <asp:Button ID="next2" runat="server" Text="Next" ValidationGroup="a" class="te-btn-primary" OnClick="RamHello22" />
 
                                             </div>
 
@@ -1444,6 +1445,9 @@
                         </div>
 
                     </div>
+                     </div>
+                    </div>
+                </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

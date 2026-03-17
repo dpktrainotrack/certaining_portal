@@ -114,10 +114,11 @@
                                                                 Text='<%#Eval("exam_date") %>'></asp:Label>
                                                             <%#Eval("exam_time") %>
                                                         </td>
-                                                        <td>
-                                                            <asp:Label ID="lbl_testing_exam_date111" runat="server"
-                                                                Text='<%#Eval("Examstatus").ToString()=="Waiting to get hold of" ? "Not Started" :"Cancelled Exam" %>'
-                                                                ForeColor='<%# (Eval("Examstatus").Equals("Waiting to get hold of")) ?  System.Drawing.Color.Red : System.Drawing.Color.DarkBlue %>' />
+                                                        <td class="es-status">
+              <asp:Label ID="lbl_testing_exam_date111" runat="server"
+    Text='<%# Eval("Examstatus").ToString() == "Waiting to get hold of" ? "Not Started" : "Cancelled Exam" %>'
+    ForeColor='<%# (Eval("Examstatus").Equals("Waiting to get hold of")) ? System.Drawing.Color.White : System.Drawing.Color.White %>'
+    BackColor='<%# (Eval("Examstatus").Equals("Waiting to get hold of")) ? System.Drawing.Color.HotPink  : System.Drawing.Color.DarkOrange %>' />
                                                         </td>
                                                         <td>
                                                             <asp:LinkButton ID="LinkButton1" CssClass="btn te-btn-view"

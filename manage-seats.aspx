@@ -2,6 +2,24 @@
     CodeBehind="manage-seats.aspx.cs" Inherits="Center.manage_seats" %>
 
     <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+        <style>
+            .status-active{
+                background-color: #28a745;
+                opacity: .7;
+            }
+            .status-inactive{
+                background-color: hotpink;
+                   opacity: .7;
+            }
+            .esstatus span {
+/*                padding: 4px 6px;*/
+                border-radius: 50px;
+                opacity: 0.7;
+                font-size: 11px;
+                font-weight: 300;
+            }
+}
+        </style>
     </asp:Content>
     <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <div class="right_col" role="main">
@@ -66,7 +84,7 @@
                     strManageSeat = "<tr>" +
                         "<td>" + data.d[i].SeatCount + "</td>" +
                         "<td>" + data.d[i].SeatName + "</td>" +
-                        "<td><span class='te-label " + (data.d[i].SeatStatus == 'Active' ? 'bg-success' : 'bg-danger') + " text-white'>" + data.d[i].SeatStatus + "</span></td>" +
+                        "<td class='esstatus'><span class='te-label " + (data.d[i].SeatStatus == 'Active' ? 'status-active' : 'status-inactive') + " text-white'>" + data.d[i].SeatStatus + "</span></td>" +
                         "<td class='text-center'>" +
                         "  <div class='d-flex justify-content-center gap-2'>" +
                         "    <button type='button' class='te-btn-view' title='Edit' data-toggle='modal' data-target='#dvManageSeats' onclick='BindSeatData(" + data.d[i].SeatId + ");'><i class='fa fa-pencil'></i></button>" +

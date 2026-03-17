@@ -69,7 +69,12 @@
             }
 
             .multiselect-native-select div.btn-group {
-                min-width: 290px;
+               width: 280px;
+            }
+            .voucher-request-section .te-input{
+                border-color: #007388;
+                padding-top: 20px;
+                padding-bottom: 20px;
             }
         </style>
     </asp:Content>
@@ -181,7 +186,7 @@
                     <ContentTemplate>
                         <!-- Hidden field to track the active tab across AJAX PostBacks -->
                         <asp:HiddenField ID="hfActiveTab" runat="server" ClientIDMode="Static"
-                            Value="#pnlRequestExam" />
+                            Value="#pnlRequestExam"   />
 
                         <div class="row mt-4">
                             <div class="col-12">
@@ -205,20 +210,24 @@
                                         </ul>
                                     </div>
 
-                                    <div class="tab-content te-tab-content d-flex justify-content-center">
+                                    <div class="tab-content te-tab-content d-flex justify-content-center voucher-request-section">
 
                                         <!-- ================= TAB 1: Via Exam ================= -->
                                         <asp:Panel ID="pnlRequestExam" ClientIDMode="Static" runat="server"
-                                            CssClass="tab-pane fade in active show">
+                                            CssClass="tab-pane fade in active show mt-5" 
+                                            style="width: 100%;     
+                                           
+                                            }">
 
                                             <!-- Selection Area -->
                                             <div id="dvExamSelection" runat="server"
                                                 class="row align-items-center mb-4">
-                                                <div class="col-12">
-                                                    <div class="">
-                                                        <label class="fw-bold mb-0">Exams <span
-                                                                class="text-danger">*</span></label>
-                                                    </div>
+                                                <div class="col-12 d-flex align-items-center flex-column">
+                                                    <div>
+                                              <%--      <div class="text-start">
+                                                        <label class="fw-bold mb-1">Exams <span
+                                                                class="text-danger"></span></label>
+                                                    </div>--%>
 
                                                     <asp:ListBox class="form-control" runat="server" ID="lstPaper"
                                                         ClientIDMode="Static" SelectionMode="Multiple">
@@ -226,11 +235,13 @@
                                                     <asp:RequiredFieldValidator ErrorMessage="Exams are required."
                                                         Display="Dynamic" ControlToValidate="lstPaper" runat="server"
                                                         ValidationGroup="VaildExam"
-                                                        CssClass="text-danger small mt-1 d-block" />
+                                                        CssClass="text-danger small mt-1" />
                                                 </div>
+                                                    </div>
                                             </div>
 
                                             <!-- Repeated Items Area -->
+                                            <div class="" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; ">
                                             <asp:Repeater ID="rptExamDetails" runat="server">
                                                 <ItemTemplate>
                                                     <div class="p-3 mb-3 bg-light rounded border">
@@ -259,14 +270,13 @@
                                                         </div>
 
                                                         <div class="row align-items-center">
-                                                            <div class="col-md-3">
+                                                            <div class="col-12">
+                                                                <div class="pb-1">
                                                                 <label
-                                                                    class="fw-bold mb-0 text-muted small text-uppercase">Voucher
-                                                                    Count <span class="text-danger">*</span></label>
-                                                            </div>
-                                                            <div class="col-md-4">
+                                                                    class="fw-bold mb-0 text-muted small text-uppercase">Voucher  Count <span class="text-danger">*</span></label>
+                                                                 </div>
                                                                 <asp:TextBox runat="server"
-                                                                    CssClass="te-input txtnumeric" ID="txtVoucherCount"
+                                                                    CssClass="te-input txtnumeric w-100" ID="txtVoucherCount"
                                                                     placeholder="e.g. 5"></asp:TextBox>
                                                                 <asp:RequiredFieldValidator runat="server"
                                                                     Display="Dynamic"
@@ -279,14 +289,14 @@
                                                     </div>
                                                 </ItemTemplate>
                                             </asp:Repeater>
-
+                                                </div>
                                             <!-- Message Area -->
                                             <div id="dvMessage" runat="server" visible="false" class="row mb-4 mt-4">
-                                                <div class="col-md-3">
+                                                <div class="col-12">
+                                                    <div class="pb-2">
                                                     <label class="fw-bold">Message <span
-                                                            class="text-danger">*</span></label>
-                                                </div>
-                                                <div class="col-md-7">
+                                                            class="text-danger"></span></label>
+                                                        </div>
                                                     <asp:TextBox ID="txtMessage" TextMode="MultiLine" runat="server"
                                                         CssClass="te-input" Rows="5"
                                                         placeholder="Enter any additional instructions or messages here...">
@@ -302,17 +312,19 @@
                                             <!-- Actions -->
                                             <div class="row pb-4">
 
-                                                <div class="col-md-12 d-flex gap-2">
-                                                    <asp:Button runat="server" ID="btnNext" Text="Next Session details"
-                                                        CssClass="te-btn-primary" ValidationGroup="VaildExam"
-                                                        OnClick="btnNext_Click" />
-                                                    <asp:Button runat="server" ID="btnSend" Text="Send Request"
-                                                        CssClass="te-btn-primary" Visible="false"
-                                                        ValidationGroup="VaildMail" OnClick="btnSend_Click" />
-                                                    <asp:Button ID="btnReset" runat="server" Text="Reset Form"
-                                                        OnClick="btnReset_Click"
-                                                        CssClass="te-btn-view bg-danger text-white border-0">
-                                                    </asp:Button>
+                                                <div class="col-md-12 pt-4 ">
+                                                    <div class="d-flex justify-content-center w-100 gap-2" >
+                                                        <asp:Button runat="server" ID="btnNext" Text="Next"
+                                                            CssClass="te-btn-primary" ValidationGroup="VaildExam"
+                                                            OnClick="btnNext_Click" />
+                                                        <asp:Button runat="server" ID="btnSend" Text="Send Request"
+                                                            CssClass="te-btn-primary" Visible="false"
+                                                            ValidationGroup="VaildMail" OnClick="btnSend_Click" />
+                                                        <asp:Button ID="btnReset" runat="server" Text="Reset"
+                                                            OnClick="btnReset_Click"
+                                                            CssClass="te-btn-primary  text-white border-0">
+                                                        </asp:Button>
+                                                   </div>
                                                 </div>
                                             </div>
 
@@ -320,16 +332,16 @@
 
                                         <!-- ================= TAB 2: Via Amount ================= -->
                                         <asp:Panel ID="pnlRequestAmount" ClientIDMode="Static" runat="server"
-                                            CssClass="tab-pane fade">
+                                            CssClass="tab-pane fade mt-5">
 
                                             <!-- Selection Area -->
                                             <div id="dvAmountFirst" runat="server" class="row align-items-center mb-4">
 
-                                                <div class="col-12">
-                                                    <div class="">
-                                                        <label class="fw-bold mb-0">Amount <span
-                                                                class="text-danger">*</span></label>
-                                                    </div>
+                                                <div class="col-12 ">
+                                              <%--      <div class="">
+                                                        <label class="fw-bold mb-1">Amount <span
+                                                                class="text-danger"></span></label>
+                                                    </div>--%>
                                                     <asp:ListBox class="form-control" runat="server" ID="lstAmount"
                                                         ClientIDMode="Static" SelectionMode="Multiple" Height="100px">
                                                     </asp:ListBox>
@@ -337,15 +349,16 @@
                                                         ErrorMessage="Amounts are required." Display="Dynamic"
                                                         ControlToValidate="lstAmount" runat="server"
                                                         ValidationGroup="VaildAmount"
-                                                        CssClass="text-danger small mt-1 d-block" />
+                                                        CssClass="text-danger small mt-1 " />
                                                 </div>
                                             </div>
 
                                             <!-- Message Area Secondary -->
                                             <div id="dvAmountSecond" runat="server" visible="false">
+                                                   <div class="" style="display: flex;  gap: 14px; flex-wrap: wrap">
                                                 <asp:Repeater ID="rptAmountDetails" runat="server">
                                                     <ItemTemplate>
-                                                        <div class="p-3 mb-3 bg-light rounded border">
+                                                        <div class="p-3 mb-3 bg-light rounded border" style="min-width: 150px">
                                                             <div class="row align-items-center mb-2">
                                                                 <div class="col-md-3">
                                                                     <label
@@ -372,7 +385,7 @@
                                                                     <asp:RequiredFieldValidator runat="server"
                                                                         Display="Dynamic"
                                                                         ControlToValidate="txtVoucherCount"
-                                                                        CssClass="text-danger small mt-1 d-block"
+                                                                        CssClass="text-danger small mt-1"
                                                                         ErrorMessage="Voucher count is required."
                                                                         ValidationGroup="VaildMailAmount" />
                                                                 </div>
@@ -380,20 +393,20 @@
                                                         </div>
                                                     </ItemTemplate>
                                                 </asp:Repeater>
-
+</div>
                                                 <div class="row mb-4 mt-4">
-                                                    <div class="col-md-3">
-                                                        <label class="fw-bold">Message <span
+                                                    <div class="col-12">
+                                                        <div>
+                                                        <label class="fw-bold pb-2">Message <span
                                                                 class="text-danger">*</span></label>
-                                                    </div>
-                                                    <div class="col-md-7">
+                                                           </div>
                                                         <asp:TextBox ID="txtMessageAmount" TextMode="MultiLine"
                                                             runat="server" CssClass="te-input" Rows="5"
                                                             placeholder="Enter any additional instructions or messages here...">
                                                         </asp:TextBox>
                                                         <asp:RequiredFieldValidator runat="server" Display="Dynamic"
                                                             ControlToValidate="txtMessageAmount"
-                                                            CssClass="text-danger small mt-1 d-block"
+                                                            CssClass="text-danger small mt-1"
                                                             ValidationGroup="VaildMailAmount"
                                                             ErrorMessage="Message is required.">
                                                         </asp:RequiredFieldValidator>
@@ -403,17 +416,17 @@
 
                                             <!-- Actions -->
                                             <div class="row pb-4">
-                                                <div class="col-12 d-flex gap-2">
-                                                    <asp:Button runat="server" ID="btnAmount" Text="Next Configuration"
+                                                <div class="col-12 d-flex gap-2 justify-content-center">
+                                                    <asp:Button runat="server" ID="btnAmount" Text="Next"
                                                         CssClass="te-btn-primary" ValidationGroup="VaildAmount"
                                                         OnClick="btnAmount_Click" />
                                                     <asp:Button runat="server" ID="btnSendAmount" Text="Send Request"
                                                         CssClass="te-btn-primary" Visible="false"
                                                         ValidationGroup="VaildMailAmount"
                                                         OnClick="btnSendAmount_Click" />
-                                                    <asp:Button ID="btnResetAmount" runat="server" Text="Reset Form"
+                                                    <asp:Button ID="btnResetAmount" runat="server" Text="Reset"
                                                         OnClick="btnResetAmount_Click"
-                                                        CssClass="te-btn-view bg-danger text-white border-0">
+                                                        CssClass="te-btn-primary bg-warning  text-white border-0" >
                                                     </asp:Button>
                                                 </div>
                                             </div>

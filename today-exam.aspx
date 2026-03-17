@@ -131,7 +131,7 @@
                                         </tbody>
                                     </table>
                                     <div class="te-error-msg">
-                                        <asp:Label ID="lbl_error" runat="server" Text="" ForeColor="Red" />
+                                        <asp:Label ID="lbl_error" runat="server" Text="" />
                                     </div>
                                 </div>
                             </div>

@@ -138,10 +138,15 @@
                                                                         Text='<%#Eval("exam_date") %>'></asp:Label>
                                                                     <%#Eval("exam_time") %>
                                                                 </td>
-                                                                <td>
+                                                                <td class="es-status">
                                                                     <asp:Label runat="server"
-                                                                        Text='<%#Eval("Examstatus").ToString() == "Waiting to get hold of" ? "Not Started" : "" %>'
-                                                                        ForeColor='<%# (Eval("Examstatus").Equals("Waiting to get hold of")) ?  System.Drawing.Color.Red : System.Drawing.Color.Green %>' />
+                                                                        Text='<%# Eval("Examstatus").ToString() == "Waiting to get hold of" ? "Not Started" : "" %>'
+                                                                        ForeColor='<%# Eval("Examstatus").ToString() == "Waiting to get hold of" 
+                                                                            ? System.Drawing.Color.White 
+                                                                            : System.Drawing.Color.Transparent %>'
+                                                                              BackColor='<%# Eval("Examstatus").ToString() == "Waiting to get hold of" 
+                                                                            ? System.Drawing.Color.HotPink 
+                                                                            : System.Drawing.Color.Transparent %>' />
                                                                 </td>
                                                                 <td>
                                                                     <asp:LinkButton CssClass="btn te-btn-view"

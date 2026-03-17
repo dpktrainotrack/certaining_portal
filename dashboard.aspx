@@ -276,7 +276,7 @@
                     <!-- View All Actions -->
                     <div class="row">
                         <div class="col-12">
-                            <div class="d-flex justify-content-center  py-4 ">
+                            <div class="d-flex justify-content-center  py-4 d-none">
                                 <a id="btnMoreRecord" runat="server" class="te-btn-primary text-decoration-none" href="all-candidate-records" style="min-width: 200px; padding: 12px 30px; border-radius: 30px; font-weight: 600; box-shadow: 0 4px 15px rgba(0, 115, 136, 0.2);">View All Candidate Records <i class="fa fa-arrow-right ms-2"></i>
                                 </a>
                             </div>

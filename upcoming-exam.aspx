@@ -136,7 +136,7 @@
                                         </tbody>
                                     </table>
                                     <div id="dvNoRecords" runat="server" visible="false" class="te-error-msg">
-                                        No records are available.
+                                       No Record Found
                                     </div>
                                 </div>
                             </div>
